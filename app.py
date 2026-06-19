@@ -8,8 +8,8 @@ scaler = joblib.load("scaler.pkl")
 st.title("IoT Traffic Classification")
 
 uploaded_file = st.file_uploader(
-    "Upload CSV with 90 features",
-    type=["csv"]
+    "Upload Dataset",
+    type=None
 )
 
 if uploaded_file:
