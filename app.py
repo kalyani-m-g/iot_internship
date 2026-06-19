@@ -1,4 +1,4 @@
-```python
+
 import streamlit as st
 import pandas as pd
 import joblib
@@ -352,4 +352,4 @@ if uploaded_file is not None:
         st.error(
             f"Processing Error: {str(e)}"
         )
-```
+
