@@ -178,6 +178,12 @@ if uploaded_file is not None:
 
         predictions = model.predict(data_scaled)
 
+        st.subheader("Model Classes")
+        st.write(model.classes_)
+
+        st.subheader("Prediction Distribution")
+        st.write(pd.Series(predictions).value_counts())
+
         st.subheader("Raw Predicted Classes")
         st.write(pd.Series(predictions).value_counts())
 
@@ -279,11 +285,7 @@ if uploaded_file is not None:
                 {attack_count:,} out of {total:,} records were classified as malicious.
                 """
             )
-            st.subheader("Model Classes")
-            st.write(model.classes_)
-
-            st.subheader("Prediction Distribution")
-            st.write(pd.Series(predictions).value_counts())
+  
         # ==========================
         # ATTACK TYPES
         # ==========================
