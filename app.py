@@ -9,7 +9,7 @@ st.title("IoT Traffic Classification")
 
 uploaded_file = st.file_uploader(
     "Upload Dataset",
-    type=["csv"]
+    type=None
 )
 
 if uploaded_file:
