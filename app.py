@@ -25,6 +25,19 @@ if uploaded_file:
     # Optional: show shape after preprocessing
     st.write("Dataset shape:", data.shape)
 
+    st.write("Current columns:")
+st.write(data.columns.tolist())
+
+if hasattr(scaler, "feature_names_in_"):
+    st.write("Expected columns:")
+    st.write(list(scaler.feature_names_in_))
+
+    missing = set(scaler.feature_names_in_) - set(data.columns)
+    extra = set(data.columns) - set(scaler.feature_names_in_)
+
+    st.write("Missing columns:", missing)
+    st.write("Extra columns:", extra)
+
     data_scaled = scaler.transform(data)
 
     predictions = model.predict(data_scaled)
