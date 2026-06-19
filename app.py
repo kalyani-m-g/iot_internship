@@ -1,4 +1,4 @@
-```python
+
 import streamlit as st
 import pandas as pd
 import joblib
@@ -123,4 +123,4 @@ if uploaded_file is not None:
 
     except Exception as e:
         st.error(f"Error: {str(e)}")
-```
+
