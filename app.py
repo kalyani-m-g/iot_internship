@@ -178,6 +178,9 @@ if uploaded_file is not None:
 
         predictions = model.predict(data_scaled)
 
+        st.subheader("Raw Predicted Classes")
+        st.write(pd.Series(predictions).value_counts())
+
         normal_classes = [
             "MQTT_Publish",
             "Thing_Speak",
