@@ -9,12 +9,21 @@ st.title("IoT Traffic Classification")
 
 uploaded_file = st.file_uploader(
     "Upload Dataset",
-    type=None
+    type=["csv"]
 )
 
 if uploaded_file:
 
     data = pd.read_csv(uploaded_file)
+
+    # Remove same columns used during training
+    data = data.drop(
+        columns=["Unnamed: 0", "id.orig_p", "id.resp_p"],
+        errors="ignore"
+    )
+
+    # Optional: show shape after preprocessing
+    st.write("Dataset shape:", data.shape)
 
     data_scaled = scaler.transform(data)
 
