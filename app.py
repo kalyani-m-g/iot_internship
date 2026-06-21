@@ -16,35 +16,52 @@ st.set_page_config(
 # ==========================
 # CUSTOM CSS
 # ==========================
-
 st.markdown("""
 <style>
 
-.main {
-    padding-top: 1rem;
+[data-testid="stAppViewContainer"]{
+    background-color:#f5f7fb;
 }
 
-.big-title {
-    font-size: 42px;
-    font-weight: bold;
-    color: #00d4ff;
+.main{
+    padding-top:0rem;
 }
 
-.subtitle {
-    font-size: 18px;
-    color: #bdbdbd;
+.hero-box{
+    background: linear-gradient(135deg,#1e3a8a,#2563eb);
+    padding:30px;
+    border-radius:18px;
+    color:white;
+    margin-bottom:20px;
 }
 
-.metric-box {
-    padding: 20px;
-    border-radius: 12px;
-    background-color: #1e1e1e;
+.hero-title{
+    font-size:38px;
+    font-weight:700;
 }
 
-.upload-box {
-    border: 2px dashed #00d4ff;
-    border-radius: 10px;
-    padding: 10px;
+.hero-sub{
+    font-size:17px;
+    opacity:0.9;
+}
+
+.metric-card{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.sidebar-title{
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#666;
+    font-size:14px;
 }
 
 </style>
@@ -63,51 +80,95 @@ scaler = joblib.load("scaler.pkl")
 
 with st.sidebar:
 
-    st.title("🛡️ IDS Dashboard")
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/2092/2092663.png",
+        width=80
+    )
+
+    st.title("IDS Dashboard")
 
     st.markdown("---")
 
-    st.subheader("Project Overview")
+    with st.expander("📌 Project Overview", expanded=True):
 
-    st.write("""
-This project implements an **IoT Intrusion Detection System (IDS)** using the **RT-IoT2022 Dataset**.
+        st.write("""
+This project detects malicious IoT network traffic using a
+Random Forest based Intrusion Detection System trained on the
+RT-IoT2022 dataset.
 
-### Features
-- Detects malicious IoT traffic
-- Classifies traffic category
-- Identifies attack types
-- Uses Machine Learning (Random Forest)
-- Real-time dataset analysis
+The system classifies incoming traffic as:
 
-### Safe Traffic Classes
-- MQTT_Publish
-- Thing_Speak
-- Wipro_bulb
+• SAFE Traffic
 
-Any other predicted class is treated as an attack.
+• ATTACK Traffic
+
+and identifies the specific attack category.
+""")
+
+    with st.expander("⚙️ Key Features"):
+
+        st.write("""
+✅ Real-Time Traffic Analysis
+
+✅ Attack Detection
+
+✅ Traffic Classification
+
+✅ Random Forest Model
+
+✅ Result Export Support
+""")
+
+    with st.expander("🟢 Safe Traffic Classes"):
+
+        st.write("""
+• MQTT_Publish
+
+• Thing_Speak
+
+• Wipro_bulb
+""")
+
+    with st.expander("📚 Project Details"):
+
+        st.write("""
+Dataset : RT-IoT2022
+
+Records : 123,117
+
+Features : 82+
+
+Classes : 12
+
+Model : Random Forest
+
+Task :
+Intrusion Detection and Attack Classification
 """)
 
     st.markdown("---")
 
     st.info(
-        "Upload a dataset file to analyze IoT network traffic."
+        "Upload a dataset file and generate security predictions instantly."
     )
 
 # ==========================
 # HEADER
 # ==========================
 
-st.markdown(
-    '<p class="big-title">🔍 IoT Intrusion Detection System</p>',
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="hero-box">
 
-st.markdown(
-    '<p class="subtitle">Analyze IoT traffic and identify malicious activity using Machine Learning</p>',
-    unsafe_allow_html=True
-)
+<div class="hero-title">
+🛡️ IoT Intrusion Detection System
+</div>
 
-st.markdown("---")
+<div class="hero-sub">
+Real-Time Analysis and Detection of Malicious IoT Network Traffic using Machine Learning
+</div>
+
+</div>
+""", unsafe_allow_html=True)
 
 # ==========================
 # FILE UPLOAD
@@ -223,22 +284,17 @@ if uploaded_file is not None:
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            st.metric(
-                "Total Records",
-                f"{total:,}"
-            )
+            c1,c2,c3 = st.columns(3)
 
-        with col2:
-            st.metric(
-                "Safe Traffic",
-                f"{safe_count:,}"
-            )
+        with c1:
+            st.info(f"📄 Total Records\n\n{total:,}")
 
-        with col3:
-            st.metric(
-                "Attack Traffic",
-                f"{attack_count:,}"
-            )
+        with c2:
+            st.success(f"🟢 Safe Traffic\n\n{safe_count:,}")
+
+        with c3:
+            st.error(f"🔴 Attack Traffic\n\n{attack_count:,}")
+        )
 
         st.markdown("---")
 
@@ -362,3 +418,17 @@ if uploaded_file is not None:
             f"Processing Error: {str(e)}"
         )
 
+
+    st.markdown("""
+    <hr>
+
+    <div class="footer">
+
+    Developed by <b>Kalyani M G</b>
+
+    <br>
+
+    IoT Intrusion Detection System using Machine Learning
+
+    </div>
+    """, unsafe_allow_html=True)  
