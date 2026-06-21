@@ -294,7 +294,7 @@ if uploaded_file is not None:
 
         with c3:
             st.error(f"🔴 Attack Traffic\n\n{attack_count:,}")
-        )
+        
 
         st.markdown("---")
 
