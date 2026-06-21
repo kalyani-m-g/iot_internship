@@ -13,9 +13,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# ==========================
-# CUSTOM CSS
-# ==========================
 st.markdown("""
 <style>
 
@@ -25,6 +22,11 @@ st.markdown("""
 
 .main{
     padding-top:0rem;
+}
+
+/* Upload Dataset text only */
+[data-testid="stFileUploader"] label{
+    color:black !important;
 }
 
 .hero-box{
@@ -66,7 +68,6 @@ st.markdown("""
 
 </style>
 """, unsafe_allow_html=True)
-
 # ==========================
 # LOAD MODEL
 # ==========================
