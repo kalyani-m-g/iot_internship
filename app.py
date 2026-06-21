@@ -149,8 +149,8 @@ Intrusion Detection and Attack Classification
 
     with st.expander("Developed by:"):
           st.write("""
-KALYANI M G
-LBSITW
+KALYANI M G 
+
 
 """)
    
