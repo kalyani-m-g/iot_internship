@@ -24,9 +24,9 @@ st.markdown("""
     padding-top:0rem;
 }
 
-/* Upload Dataset text only */
-[data-testid="stFileUploader"] label{
-    color:black !important;
+/* Only File Uploader label */
+[data-testid="stFileUploader"] > label {
+    color: black !important;
 }
 
 .hero-box{
